@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryHaven - College IT Project Storybook Library</title>
+  <!-- Tailwind CSS CDN for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], serif: ['Merriweather', 'serif'] } } }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- ==================== 1. HEADER ==================== -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo & Name -->
+      <a href="#home" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1">
+            Story<span class="text-orange-500">Haven</span>
+          </span>
+          <span class="text-[10px] uppercase font-semibold text-slate-400 block -mt-1 tracking-wider">IT Project Library</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links (Smooth scroll) -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#home" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
+        <a href="#home" onclick="backToLibrary(); return false;" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Discover</a>
+        <a href="#genres" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Genres</a>
+        <a href="#my-library" onclick="filterMyLibrary()" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5">
+          <span>My Library</span>
+          <span id="fav-badge" class="px-1.5 py-0.2 text-xs font-bold bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-400 rounded-full">0</span>
+        </a>
+      </nav>
+
+      <!-- Search & Dark/Light Toggle -->
+      <div class="header-tools flex items-center gap-3">
+        <!-- Search bar -->
+        <div class="relative w-48 sm:w-64">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search title, author..." 
+            class="w-full pl-9 pr-4 py-1.5 text-sm rounded-full bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-orange-500 dark:focus:border-orange-400 focus:bg-white dark:focus:bg-slate-900 outline-none transition-all placeholder:text-slate-400 text-slate-800 dark:text-slate-100"
+            aria-label="Search stories"
+          >
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button 
+          id="themeToggleBtn" 
+          class="p-2 rounded-full text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+          title="Toggle Dark/Light Mode"
+          aria-label="Toggle Dark/Light Mode"
+        >
+          <i data-lucide="moon" id="themeIcon" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow">
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section id="home" class="relative overflow-hidden py-14 sm:py-20 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-orange-50/60 to-transparent dark:from-slate-900/60 dark:to-transparent">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-orange-700 dark:text-orange-300 bg-orange-100/80 dark:bg-orange-950/80 rounded-full mb-4">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 30 Original Short Stories • Story Library
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+          Read, Discover, & Escape into <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-500 to-rose-500">
+            Micro-Story Adventures
+          </span>
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          A minimalist Wattpad-inspired storybook designed for quick, bite-sized college reads. Explore romance, mystery, sci-fi, and horror without switching pages.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
+          <a 
+            href="#home" onclick="backToLibrary(); return false;" 
+            class="px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-semibold text-sm shadow-md shadow-orange-600/25 transition-all flex items-center gap-2"
+          >
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            Explore 30 Storybooks
+          </a>
+          <a 
+            href="#genres" 
+            class="px-5 py-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-sm border border-slate-200 dark:border-slate-700 transition-colors"
+          >
+            Browse Genres
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== 3. GENRE FILTER SECTION ==================== -->
+    <section id="genres" class="py-8 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4 text-orange-500"></i>
+              Filter by Genre
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Click any genre below to quickly filter the book collection</p>
+          </div>
+
+          <!-- Quick Genre Pill Buttons -->
+          <div class="flex flex-wrap items-center gap-1.5" id="genreContainer">
+            <!-- Populated via JavaScript -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== 4. BOOK COLLECTION SECTION ==================== -->
+    <section id="books" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header & Active Stats -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Storybook Collection
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+            Showing <span id="displayedCount" class="font-semibold text-orange-600 dark:text-orange-400">30</span> of 30 stories
+          </p>
+        </div>
+
+        <!-- Filter Reset & Quick Info -->
+        <div class="flex items-center gap-3">
+          <button 
+            id="resetFilterBtn" 
+            onclick="resetFilters()" 
+            class="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-orange-600 dark:hover:text-orange-400 flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          >
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            Reset Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- No Results Feedback -->
+      <div id="noResults" class="hidden text-center py-16">
+        <i data-lucide="book-x" class="w-12 h-12 text-slate-400 mx-auto mb-3"></i>
+        <p class="text-lg font-semibold text-slate-700 dark:text-slate-300">No stories found</p>
+        <p class="text-sm text-slate-500 mt-1">Try searching another title, author, or reset your genre filter.</p>
+        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-orange-600 text-white rounded-lg text-xs font-semibold hover:bg-orange-700 transition">
+          Show All Stories
+        </button>
+      </div>
+
+      <!-- Responsive Grid: 30 compact book cards -->
+      <div 
+        id="bookGrid" 
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6"
+      >
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </section>
+
+
+    <!-- ==================== 5. STORY READER SCREEN ==================== -->
+    <section id="reading-section" class="py-16 bg-slate-100/70 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 transition-colors">
+      <div class="reader-page max-w-3xl mx-auto px-4 sm:px-6">
+
+        <!-- Top Navigation to return -->
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <a 
+            href="#home" onclick="backToLibrary(); return false;" 
+            class="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
+          >
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back to Library
+          </a>
+          <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Story Reader Interface</span>
+        </div>
+
+        <!-- Active Reading Card Container -->
+        <div id="readerContainer" class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          
+          <!-- Banner: Distinct gradient of active story (No picture/photo) -->
+          <div id="readerCoverBanner" class="h-36 sm:h-44 w-full bg-gradient-to-r from-orange-500 via-rose-500 to-amber-500 p-6 flex flex-col justify-end text-white relative">
+            <span id="readerGenre" class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider uppercase bg-white/20 backdrop-blur-md self-start mb-2">
+              Romance
+            </span>
+            <h2 id="readerTitle" class="text-2xl sm:text-3xl font-extrabold tracking-tight drop-shadow-sm">
+              Select a Story to Begin Reading
+            </h2>
+            <p id="readerAuthor" class="text-sm font-medium text-white/90 mt-1">
+              By Author Name
+            </p>
+          </div>
+
+          <!-- Reader Content Body -->
+          <div class="p-6 sm:p-10">
+            
+            <!-- Metadata & Chapter header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-slate-100 dark:border-slate-800 gap-3">
+              <div>
+                <span class="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-widest block mb-0.5">
+                  Chapter 1 of 1
+                </span>
+                <h3 id="readerChapterTitle" class="text-lg font-bold text-slate-900 dark:text-white">
+                  The Beginning
+                </h3>
+              </div>
+
+              <!-- Quick actions in reader -->
+              <div class="flex items-center gap-2">
+                <button 
+                  id="readerLikeBtn" 
+                  onclick="toggleReaderLike()"
+                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
+                >
+                  <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                  <span id="readerLikeText">Like</span>
+                </button>
+                <a 
+                  href="#home" onclick="backToLibrary(); return false;" 
+                  class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+                >
+                  Back to Library
+                </a>
+              </div>
+            </div>
+
+            <!-- Chapter story text: 3-5 concise paragraphs, serif, comfortable typography -->
+            <div id="readerStoryText" class="font-serif text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed space-y-4">
+              <p>Welcome to the single-page reader! Click any "Read Story" button from the book grid above to immediately load its unique short chapter and smoothly scroll here.</p>
+              <p>Each story features an exclusive solid or gradient color jacket, authentic IT-friendly short fiction, and comfortable reading typography.</p>
+            </div>
+
+            <!-- Reader Footer -->
+            <div class="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span class="text-xs text-slate-400 italic">End of Chapter 1 • Story complete</span>
+              <a 
+                href="#home" onclick="backToLibrary(); return false;" 
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-semibold text-xs transition shadow-sm"
+              >
+                <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                Back to Library
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==================== 6. FOOTER ==================== -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <!-- Brand & Project Tag -->
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-orange-500 text-white flex items-center justify-center">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+        </div>
+        <span class="text-base font-bold text-slate-800 dark:text-slate-200">StoryHaven</span>
+        <span class="text-xs text-slate-400 ml-2">| College IT Project (Web Development)</span>
+      </div>
+
+      <!-- Copyright & Simple Info -->
+      <div class="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-right">
+        <p>&copy; 2025 StoryHaven Library. Built with Vanilla JS &amp; Semantic HTML.</p>
+        <p class="mt-0.5 text-slate-400">Gradient covers • No external images • Two-screen reader</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script src="script.js" defer></script>
+</body>
+</html>
