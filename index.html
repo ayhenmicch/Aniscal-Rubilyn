@@ -41,9 +41,9 @@
 
       <!-- Navigation Links (Smooth scroll) -->
       <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="#home" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
-        <a href="#home" onclick="backToLibrary(); return false;" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Discover</a>
-        <a href="#genres" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Genres</a>
+        <a href="#home" onclick="showAllStories(); return false;" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Home</a>
+        <a href="#home" onclick="showAllStories(); return false;" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Discover</a>
+        <a href="#genres" onclick="showGenres(); return false;" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Genres</a>
         <a href="#my-library" onclick="filterMyLibrary()" class="px-3 py-1.5 rounded-lg hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5">
           <span>My Library</span>
           <span id="fav-badge" class="px-1.5 py-0.2 text-xs font-bold bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-400 rounded-full">0</span>
