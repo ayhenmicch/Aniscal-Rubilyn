@@ -628,6 +628,22 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function showAllStories() {
+      backToLibrary();
+      resetFilters();
+      noResults.querySelector("p").textContent = "No stories found";
+      noResults.querySelector("p:nth-child(3)").textContent = "Try searching another title, author, or reset your genre filter.";
+      document.getElementById("home").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function showGenres() {
+      backToLibrary();
+      resetFilters();
+      noResults.querySelector("p").textContent = "No stories found";
+      noResults.querySelector("p:nth-child(3)").textContent = "Try searching another title, author, or reset your genre filter.";
+      document.getElementById("genres").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
     function backToLibrary() {
       document.body.classList.remove("reader-mode");
       window.scrollTo({ top: 0, behavior: "smooth" });
